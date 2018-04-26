@@ -2,7 +2,37 @@
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
+    <h3>Order-email: <%=@order.email %></h3>
+
   </header>
+
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.line_items.each do |product_id, details, quantity, total_price| %>
+          <%= render 'item', product_id: product_id, details: details, quantity: quantity, total_price: total_price %>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            ORDER TOTAL:
+          </th>
+          <th>
+            <%= @order.total %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
