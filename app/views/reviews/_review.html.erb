@@ -8,8 +8,11 @@
   <%= review.description %>
 </p>
 
-<p>
-  <%= link_to 'Delete Review', [review.product, review],
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-</p>
+<% if current_user == review.user %>
+
+  <button>
+    <%= link_to 'Delete Review', [review.product, review],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  </button>
+<% end %>

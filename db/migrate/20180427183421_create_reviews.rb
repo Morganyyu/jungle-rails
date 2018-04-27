@@ -6,6 +6,7 @@ class CreateReviews < ActiveRecord::Migration
       t.text :description
       t.integer :rating
       t.references :product, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
 
 
       t.timestamps null: false

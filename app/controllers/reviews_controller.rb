@@ -1,18 +1,21 @@
 class ReviewsController < ApplicationController
-  scope :desc, order("reviews.review_at DESC")
+
   def show
   end
 
   def create
     @product = Product.find(params[:product_id])
-    @review = @product.reviews.create(review_params)
-
+    @review = @product.reviews.new(review_params)
+    @review.user = current_user
+    @review.save
     redirect_to product_path(@product)
   end
 
   def destroy
+    # TODO: ensure that only the right user can do this
     @product = Product.find(params[:product_id])
     @review = @product.reviews.find(params[:id])
+    @review.user = current_user
     @review.destroy
     redirect_to product_path(@product)
   end

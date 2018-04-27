@@ -22,6 +22,8 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Average Rating</dt>
+          <dd><%= @product.reviews.average(:rating) %></dd>
         </dl>
       </div>
     </div>
@@ -30,12 +32,7 @@
   <% if current_user %>
     <h3>Add a review:</h3>
     <%= render 'reviews/form' %>
-
-    <h3>Reviews</h3>
-    <%= render @product.reviews %>
-
-  <% else %>
-    <h3>Reviews</h3>
-    <%= render @product.reviews %>
   <% end %>
+  <h3>Reviews</h3>
+  <%= render @product.reviews.order(created_at: :desc) %>
 </section>
