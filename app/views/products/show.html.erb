@@ -27,5 +27,15 @@
     </div>
 
   </article>
+  <% if current_user %>
+    <h3>Add a review:</h3>
+    <%= render 'reviews/form' %>
 
+    <h3>Reviews</h3>
+    <%= render @product.reviews %>
+
+  <% else %>
+    <h3>Reviews</h3>
+    <%= render @product.reviews %>
+  <% end %>
 </section>
