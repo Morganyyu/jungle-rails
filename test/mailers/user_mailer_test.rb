@@ -1,5 +1,5 @@
 class UserMailerPreview < ActionMailer::Preview
-  def welcome_email
-    UserMailer.with(order: Order.first).receipt_email
+  def receipt_email(order)
+    UserMailer.with(order).receipt_email
   end
 end
