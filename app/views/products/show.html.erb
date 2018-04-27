@@ -23,7 +23,11 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
           <dt>Average Rating</dt>
-          <dd><%= @product.reviews.average(:rating) %></dd>
+          <% if @product.reviews.average(:rating) %>
+            <dd><%= '%.2f'%(@product.reviews.average(:rating)) %></dd>
+          <% else %>
+            <dd>No ratings yet</dd>
+          <% end %>
         </dl>
       </div>
     </div>
@@ -34,5 +38,9 @@
     <%= render 'reviews/form' %>
   <% end %>
   <h3>Reviews</h3>
-  <%= render @product.reviews.order(created_at: :desc) %>
+  <% if @product.reviews %>
+    <%= render @product.reviews.order(created_at: :desc) %>
+  <% else %>
+    <h5>No reviews so far...</h5>
+  <% end %>
 </section>

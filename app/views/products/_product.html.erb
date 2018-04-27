@@ -5,7 +5,11 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
-  <h5>Average Rating: <%= product.reviews.average(:rating) %></h5>
+  <% if product.reviews.average(:rating) %>
+    <h5>Average Rating: <%= '%.2f'%(product.reviews.average(:rating)) %></h5>
+  <% else %>
+    <h5>Average Rating: No ratings yet...</h5>
+  <% end %>
   <p class="description">
     <%= product.description %>
   </p>
