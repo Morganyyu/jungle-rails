@@ -18,9 +18,7 @@ RSpec.feature "Visitor adds item to cart", type: :feature, js: true do
 
   scenario "Cart quantity updates" do
     visit root_path
-    first('article.product').find_link('Add').click
-
-
+    first('article.product').find_link('Add').clicks
     expect(page).to have_css 'article.product', count: 10
   end
 
